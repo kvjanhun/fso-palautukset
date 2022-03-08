@@ -1,6 +1,6 @@
 0.4: uusi muistiinpano
 ---
-![Kaaviokuva 1](/0-4.png)
+![Kaaviokuva 1](/osa0/0-4.png)
 
 0.5: Single Page App
 ---
