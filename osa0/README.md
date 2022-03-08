@@ -8,4 +8,4 @@
 
 0.6: Uusi muistiinpano
 ---
-![Kaaviokuva 3](/osa0/0-5.png)
+![Kaaviokuva 3](/osa0/0-6.png)
