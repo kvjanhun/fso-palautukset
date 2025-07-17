@@ -1,4 +1,2 @@
-# fso22-palautukset
+# fso-palautukset
 Full Stack Open -kurssisuoritukseni palautusrepositorio.
-
-On se.
