@@ -1,1 +1,1 @@
-#Full Stack Open, osa 1
+# Full Stack Open, osa 1
