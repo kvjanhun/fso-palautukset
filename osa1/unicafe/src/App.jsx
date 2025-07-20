@@ -7,14 +7,27 @@ const Button = ({ onClick, text }) => (
   <button onClick={onClick}>{text}</button>
 )
 
+const Statistics = ( { good, neutral, bad }) => {
+  if (good + neutral + bad === 0) {
+    return <div>No feedback given</div>
+  }
+  return (
+    <div>
+      <FeedbackCount count={good} text='good' />
+      <FeedbackCount count={neutral} text='neutral' />
+      <FeedbackCount count={bad} text='bad' />
+      <FeedbackCount count={good + neutral + bad} text='total' />
+      <FeedbackCount count={((good - bad) / (good + neutral + bad) || 0).toFixed(2)} text='average' />
+      <FeedbackCount count={(good / (good + neutral + bad) * 100 || 0).toFixed(2) + '%'} text='positive' />
+    </div>
+  )
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-  const total = good + neutral + bad
-  const average = (good - bad) / total || 0
-  const positive = (good / total) * 100 || 0
 
   return (
     <>
@@ -23,12 +36,7 @@ const App = () => {
       <Button onClick={() => setNeutral(neutral + 1)} text='neutral' />
       <Button onClick={() => setBad(bad + 1)} text='bad' />
       <Header text='statistics' />
-      <FeedbackCount count={good} text='good' />
-      <FeedbackCount count={neutral} text='neutral' />
-      <FeedbackCount count={bad} text='bad' />
-      <FeedbackCount count={total} text='total' />
-      <FeedbackCount count={average.toFixed(2)} text='average' />
-      <FeedbackCount count={positive.toFixed(2) + '%'} text='positive' />
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </>
   )
 }
