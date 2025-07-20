@@ -1,15 +1,6 @@
 import { useState } from 'react'
 
-const Button = ({ onClick, text }) => {
-  return (
-    <button onClick={onClick}>{text}</button>
-  )
-}
-
-const Display = ({ text }) => <div>{text}</div>
-
-const App = () => {
-  const anecdotes = [
+const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
     'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
@@ -19,13 +10,19 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
+  
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
+const Display = ({ text }) => <div>{text}</div>
+const getRandomIndex = (length) => Math.floor(Math.random() * length)
+
+const App = () => {
   const [selected, setSelected] = useState(0)
 
   return (
     <div>
       <Display text={anecdotes[selected]} />
-      <Button onClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))} text="Random anecdote" />
+      <Button onClick={() => setSelected(getRandomIndex(anecdotes.length))} 
+              text="Random anecdote" />
     </div>
   )
 }
