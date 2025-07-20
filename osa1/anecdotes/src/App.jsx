@@ -14,6 +14,7 @@ const initialVotes = Array(anecdotes.length).fill(0)
   
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 const Display = ({ text }) => <div>{text}</div>
+const Header = ({ text }) => <h1>{text}</h1>
 
 const getRandomIndex = (length) => Math.floor(Math.random() * length)
 
@@ -27,14 +28,23 @@ const App = () => {
     newVotes[selected] += 1
     setVotes(newVotes)
   }
+  const getMostVotedAnecdote = () => {
+    const maxVotes = Math.max(...votes)
+    const index = votes.indexOf(maxVotes)
+    if (maxVotes === 0) return 'No votes yet'
+    return anecdotes[index]
+  }
 
   return (
-    <div>
+    <>
+      <Header text="Anecdote of the day" />
       <Display text={anecdotes[selected]} />
       <Display text={`has ${votes[selected]} votes`} />
       <Button onClick={handleVote} text="vote" />
       <Button onClick={getRandomAnecdote} text="next anecdote" />
-    </div>
+      <Header text="Anecdote with most votes" />
+      <Display text={getMostVotedAnecdote()} />
+    </>
   )
 }
 
