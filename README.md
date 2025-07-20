@@ -1,5 +1,5 @@
 # fso-palautukset
-Full Stack Open -kurssisuoritukseni palautusrepositorio.
+Submissions for Full Stack Open course.
 ## Osa 1
 - [Course Information](osa1/courseinfo)
 - [Unicafe](osa1/unicafe)
