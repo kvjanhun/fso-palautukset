@@ -3,7 +3,8 @@ Submissions for Full Stack Open course.
 
 | Worklog | Part done  | Time spent |
 |--------:|:-----------|:-----------|
-|2025-07-21|Exercise 2.10|7 h|
+|pre-log|Part 1 all|20 h|
+|2025-07-21|Part 2b|7 h|
 
 ## Part 1
 - [Course Information](osa1/courseinfo)
