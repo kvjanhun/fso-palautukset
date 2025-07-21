@@ -1,10 +1,10 @@
 # fso-palautukset
 Submissions for Full Stack Open course.
 
-| Worklog | Part done  | Time spent |
-|--------:|:-----------|:-----------|
-|pre-log|Part 1 ✅ |20 h|
-|2025-07-21|Part 2c|10 h|
+| Worklog | Part done  | Bookmark | Time spent |
+|--------:|:-----------|:---------|:-----------|
+|pre-log|Part 1 ✅||20 h|
+|2025-07-21|Part 2c|Promises and Errors|12 h|
 
 ## Part 1
 - [Course Information](osa1/courseinfo)
