@@ -1,4 +1,35 @@
 import { useState } from 'react'
+import { PersonForm } from './PersonForm'
+
+const PersonTable = ({ persons }) => 
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {persons.length === 0 ? (
+        <tr>
+          <td colSpan="2">No results found</td>
+        </tr>
+      ) : (
+        persons.map((person) => (
+          <tr key={person.id}>
+            <td>{person.name}</td>
+            <td>{person.number}</td>
+          </tr>
+        ))
+      )}
+    </tbody>
+  </table>
+
+const Filter = ({ value, onChange }) =>
+    <div>
+      Filter shown with
+      <input value={value} onChange={onChange} />
+    </div>
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -45,18 +76,6 @@ const App = () => {
     setNewSearchValue(event.target.value)
   }
 
-  const displayPersons = () => {
-    if (personsToDisplay.length === 0) {
-      return <tr><td colSpan="2">No results found</td></tr>
-    }
-    return personsToDisplay.map((person) => (
-      <tr key={person.id}>
-        <td>{person.name}</td>
-        <td>{person.number}</td>
-      </tr>
-    ))
-  }
-
   const filteredPersons = persons.filter(person =>
     person.name.toLowerCase().includes(newSearchValue.toLowerCase())
   )
@@ -66,31 +85,17 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <div>
-        Filter shown with
-        <input
-          value={newSearchValue}
-          onChange={handleSearchValueChange}
-        />
-      </div>
+      <Filter value={newSearchValue} onChange={handleSearchValueChange} />
       <h2>Add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm
+        onSubmit={addPerson}
+        newName={newName}
+        onNameChange={handleNameChange}
+        newNumber={newNumber}
+        onNumberChange={handleNumberChange}
+      />
       <h2>Numbers</h2>
-      <table>
-        <tbody>
-          {displayPersons()}
-        </tbody>
-      </table>
+      <PersonTable persons={personsToDisplay} />
     </div>
   )
 }
