@@ -1,35 +1,7 @@
 import { useState } from 'react'
-import { PersonForm } from './PersonForm'
-
-const PersonTable = ({ persons }) => 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Number</th>
-      </tr>
-    </thead>
-    <tbody>
-      {persons.length === 0 ? (
-        <tr>
-          <td colSpan="2">No results found</td>
-        </tr>
-      ) : (
-        persons.map((person) => (
-          <tr key={person.id}>
-            <td>{person.name}</td>
-            <td>{person.number}</td>
-          </tr>
-        ))
-      )}
-    </tbody>
-  </table>
-
-const Filter = ({ value, onChange }) =>
-    <div>
-      Filter shown with
-      <input value={value} onChange={onChange} />
-    </div>
+import PersonForm from './components/PersonForm'
+import PersonTable from './components/PersonTable'
+import Filter from './components/Filter'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -44,9 +16,14 @@ const App = () => {
     { id: 9, name: 'Charlie White', number: '555-8765' },
     { id: 10, name: 'Diana Prince', number: '555-4321' }
   ]) 
+
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newSearchValue, setNewSearchValue] = useState('')
+
+  const handleNameChange = (event) => setNewName(event.target.value)
+  const handleNumberChange = (event) => setNewNumber(event.target.value)
+  const handleSearchValueChange = (event) => setNewSearchValue(event.target.value)
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -56,7 +33,7 @@ const App = () => {
       number: newNumber
     }
     if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to phonebook`)
+      alert(`${newName} is already added to phonebook`) 
       return
     }
     setPersons(persons.concat(personObject))
@@ -64,26 +41,13 @@ const App = () => {
     setNewNumber('')
   }
 
-  const handleNameChange = (event) => {
-    setNewName(event.target.value)
-  }
-
-  const handleNumberChange = (event) => {
-    setNewNumber(event.target.value)
-  }
-
-  const handleSearchValueChange = (event) => {
-    setNewSearchValue(event.target.value)
-  }
-
   const filteredPersons = persons.filter(person =>
     person.name.toLowerCase().includes(newSearchValue.toLowerCase())
   )
-
   const personsToDisplay = newSearchValue ? filteredPersons : persons  
   
   return (
-    <div>
+    <>
       <h1>Phonebook</h1>
       <Filter value={newSearchValue} onChange={handleSearchValueChange} />
       <h2>Add a new</h2>
@@ -96,7 +60,7 @@ const App = () => {
       />
       <h2>Numbers</h2>
       <PersonTable persons={personsToDisplay} />
-    </div>
+    </>
   )
 }
 
