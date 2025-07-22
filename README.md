@@ -5,7 +5,7 @@ Submissions for Full Stack Open course.
 |--------:|:-----------|:---------|:-----------|
 |pre-log|Part 1 ✅||20 h|
 |2025-07-21|Part 2c|Promises and Errors|12 h|
-|2025-07-22|Part 2d|Exercise 2.15|1,5 h|
+|2025-07-22|Part 2d|Part 2e|2,5 h|
 
 ## Part 1
 - [Course Information](osa1/courseinfo)

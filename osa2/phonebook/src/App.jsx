@@ -29,7 +29,12 @@ const App = () => {
       number: newNumber
     }
     if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to phonebook`) 
+      if (window.confirm(`${newName} is already added to phonebook,
+        replace the old number with a new one?`))
+        changeNumber(
+          persons.find(person => person.name === newName).id,
+          newNumber
+        )
       return
     }
     phonebookService
@@ -47,15 +52,14 @@ const App = () => {
   const personsToDisplay = newSearchValue ? filteredPersons : persons  
   
   const deletePerson = id => {
-
-    if (window.confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
+    if (window.confirm(`Delete ${findPersonById(id).name}?`)) {
       phonebookService
         .remove(id)
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
         })
         .catch(error => {
-          alert(`Information of ${persons.find(p => p.id === id).name} has already been removed from server`)
+          alert(`Information of ${findPersonById(id).name} has already been removed from server`)
           setPersons(persons.filter(person => person.id !== id))
         })
     }
@@ -63,6 +67,23 @@ const App = () => {
 
   const handleClick = id => {
     deletePerson(id)
+  }
+
+  const findPersonById = id => {
+    return persons.find(person => person.id === id)
+  }
+
+  const changeNumber = (id, newNumber) => {
+    const personToUpdate = findPersonById(id)
+    const updatedPerson = { ...personToUpdate, number: newNumber }
+
+    phonebookService
+      .update(id, updatedPerson)
+      .then(returnedPerson => {
+        setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
+        setNewName('')
+        setNewNumber('')
+      })
   }
 
   return (
