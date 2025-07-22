@@ -22,10 +22,9 @@ const App = () => {
       })
     }, [])
 
-  const addPerson = (event) => {
+  const addPerson = event => {
     event.preventDefault()
     const personObject = {
-      id: String(persons.length + 1),
       name: newName,
       number: newNumber
     }
@@ -47,6 +46,25 @@ const App = () => {
   )
   const personsToDisplay = newSearchValue ? filteredPersons : persons  
   
+  const deletePerson = id => {
+
+    if (window.confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
+      phonebookService
+        .remove(id)
+        .then(() => {
+          setPersons(persons.filter(person => person.id !== id))
+        })
+        .catch(error => {
+          alert(`Information of ${persons.find(p => p.id === id).name} has already been removed from server`)
+          setPersons(persons.filter(person => person.id !== id))
+        })
+    }
+  }
+
+  const handleClick = id => {
+    deletePerson(id)
+  }
+
   return (
     <>
       <h1>Phonebook</h1>
@@ -60,7 +78,7 @@ const App = () => {
         onNumberChange={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <PersonTable persons={personsToDisplay} />
+      <PersonTable persons={personsToDisplay} onClick={handleClick} />
     </>
   )
 }
