@@ -7,6 +7,7 @@ Submissions for Full Stack Open course.
 |2025-07-21|Part 2c|Promises and Errors|12 h|
 |2025-07-22|Part 2e, Ex 2.17|Couple of important remarks|6 h|
 |2025-07-23|Part 2|Exercise 2.19.|7,5 h|
+|2025-07-24|Part 2|Exercise 2.20|4 h|
 
 
 ## Part 1
