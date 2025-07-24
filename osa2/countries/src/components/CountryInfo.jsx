@@ -1,6 +1,9 @@
+import Weather from './Weather'
+
 const CountryInfo = ({ country }) => {
   return (
     <div className="country-info">
+      <div className="country-container">
       <h2>{country.name.common}</h2>
       <p>Capital: {country.capital}</p>
       <p>Population: {country.population.toLocaleString()}</p>
@@ -14,6 +17,10 @@ const CountryInfo = ({ country }) => {
       <img 
         src={country.flags.png} 
         alt={`Flag of ${country.name.common}`} />
+      </div>
+      <div className="weather-container">
+        <Weather city={country.capital} />
+      </div>
     </div>
   )
 }

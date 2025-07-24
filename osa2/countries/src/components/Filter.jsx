@@ -11,13 +11,12 @@ const Filter = ({ onFilterChange }) => {
 
   return (
     <div className="filter-container">
-      <label htmlFor="country-filter">Find countries: </label>
       <input
         id="country-filter"
         type="text"
         value={filter}
         onChange={handleFilterChange}
-        placeholder=""
+        placeholder="Find countries..."
         className="filter-input"
       />
     </div>

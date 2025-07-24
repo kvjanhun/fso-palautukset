@@ -41,7 +41,7 @@ function App() {
             <div className="message">No countries match your search</div>
           ) : filteredCountries.length > 214 ? (
             <div className="message">
-              Start by typing a country name to filter results.
+              Start by typing a country name.
             </div>
           ) : filteredCountries.length > 10 ? (
             <div className="message">
