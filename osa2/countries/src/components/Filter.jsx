@@ -17,7 +17,7 @@ const Filter = ({ onFilterChange }) => {
         type="text"
         value={filter}
         onChange={handleFilterChange}
-        placeholder="Type to filter countries..."
+        placeholder=""
         className="filter-input"
       />
     </div>
