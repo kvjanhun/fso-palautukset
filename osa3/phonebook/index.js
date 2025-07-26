@@ -26,6 +26,19 @@ let persons = [
     }
 ]
 
+const generateId = () => {
+  const id = () => {
+    return Math.floor(Math.random() * 1e6).toString()
+  }
+  console.log(`Generating new ID: ${id()}`)
+  const existingIds = persons.map(p => p.id)
+  let newId = id()
+  while (existingIds.includes(newId)) {
+    newId = id()
+  }
+  return String(newId)
+}
+
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
@@ -49,6 +62,31 @@ app.get('/api/persons/:id', (request, response) => {
   } else {
     response.status(404).end()
   }
+})
+
+app.post('/api/persons', (request, response) => {
+  const body = request.body
+
+  if (!body.name) {
+    return response.status(400).json({
+      error: 'Name missing'
+    })
+  }
+
+  if (!body.number) {
+    return response.status(400).json({
+      error: 'Number missing'
+    })
+  }
+
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number
+  }
+
+  persons = persons.concat(person)
+  response.json(person)
 })
 
 app.delete('/api/persons/:id', (request, response) => {
