@@ -4,10 +4,11 @@ Submissions for Full Stack Open course.
 | Worklog | Part done  | Bookmark | Time spent |
 |--------:|:-----------|:---------|:-----------|
 |pre-log|Part 1 ✅||20 h|
-|2025-07-21|Part 2c|Promises and Errors|12 h|
-|2025-07-22|Part 2e, Ex 2.17|Couple of important remarks|6 h|
-|2025-07-23|Part 2|Exercise 2.19.|7,5 h|
+|2025-07-21|Part 2c||12 h|
+|2025-07-22|Part 2e, Ex 2.17||6 h|
+|2025-07-23|Part 2||7,5 h|
 |2025-07-24|Part 2 ✅||8 h|
+|2025-07-26|Part 3|Ex 3.2|5 h|
 
 
 ## Part 1
@@ -21,4 +22,4 @@ Submissions for Full Stack Open course.
 - [Data for countries](osa2/countries/)
 
 ## Part 3
-- 
+-  [Phonebook backend](osa3/phonebook)
