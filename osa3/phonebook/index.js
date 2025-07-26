@@ -79,6 +79,12 @@ app.post('/api/persons', (request, response) => {
     })
   }
 
+  if (persons.some(p => p.name === body.name)){
+    return response.status(400).json({
+      error: 'Name must be unique'
+    })
+  }
+
   const person = {
     id: generateId(),
     name: body.name,
