@@ -9,7 +9,7 @@ Submissions for Full Stack Open course.
 |2025-07-23|Part 2||7,5 h|
 |2025-07-24|Part 2 ✅||8 h|
 |2025-07-26|Part 3a|About HTTP request types|7 h|
-|2025-07-27|Part 3|||
+|2025-07-27|Part 3|Ex. 3.8|2 h|
 
 
 ## Part 1
