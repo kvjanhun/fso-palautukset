@@ -9,7 +9,7 @@ Submissions for Full Stack Open course.
 |2025-07-23|Part 2||7,5 h|
 |2025-07-24|Part 2 ✅||8 h|
 |2025-07-26|Part 3a|About HTTP request types|7 h|
-|2025-07-27|Part 3a|3b|3 h|
+|2025-07-27|Part 3b|3c|7 h|
 
 
 ## Part 1
@@ -24,3 +24,5 @@ Submissions for Full Stack Open course.
 
 ## Part 3
 -  [Phonebook backend](osa3/phonebook)
+    - Deployed at https://fso-phonebook-vjwj.onrender.com
+- 
