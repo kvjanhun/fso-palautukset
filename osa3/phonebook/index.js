@@ -7,39 +7,48 @@ const app = express()
 
 app.use(express.static('dist'))
 app.use(express.json())
-app.use(morgan(function (tokens, req, res) {
+app.use(morgan(function (tokens, request, response) {
   return [
-    tokens.method(req, res),
-    tokens.url(req, res),
-    tokens.status(req, res),
-    tokens.res(req, res, 'content-length'),
+    tokens.method(request, response),
+    tokens.url(request, response),
+    tokens.status(request, response),
+    tokens.res(request, response, 'content-length'),
     '-',
-    tokens['response-time'](req, res), 'ms',
-    JSON.stringify(req.body)
+    tokens['response-time'](request, response), 'ms',
+    JSON.stringify(request.body)
   ].join(' ')
 }))
 
-app.get('/info', (request, response) => {
+const validateInput = (request, response, next) => {
+  const { name, number } = request.body
+    if (!name) {
+    return response.status(400).json({
+      error: 'Name missing'
+    })
+  }
+  if (!number) {
+    return response.status(400).json({
+      error: 'Number missing'
+    })
+  }
+  next()
+}
+
+app.get('/info', (request, response, next) => {
   Person.countDocuments().then(count => {
     response.send(`
       <p>Phonebook has info for ${count} people</p>
       <p>${new Date().toString()}</p>
     `)
   })
-  .catch(error => {
-    console.log('Error fetching count:', error)
-    response.status(500).end()
-  })
+  .catch(error => next(error))
 })
 
-app.get('/api/persons', (request, response) => {
+app.get('/api/persons', (request, response, next) => {
   Person.find({}).then(persons => {
     response.json(persons)
   })
-  .catch(error => {
-    console.log('Error fetching persons:', error)
-    response.status(500).end()
-  })
+  .catch(error => next(error))
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
@@ -54,24 +63,10 @@ app.get('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.post('/api/persons', (request, response, next) => {
-  const body = request.body
-  if (!body.name) {
-    return response.status(400).json({
-      error: 'Name missing'
-    })
-  }
-
-  if (!body.number) {
-    return response.status(400).json({
-      error: 'Number missing'
-    })
-  }
-  const person = new Person({
-      name: body.name,
-      number: body.number
-  })
-  Person.findOne({name: body.name}).then(existingPerson => {
+app.post('/api/persons', validateInput, (request, response, next) => {
+  const { name, number } = request.body
+  const person = new Person({ name, number })
+  Person.findOne({ name }).then(existingPerson => {
     if (existingPerson) {
       return response.status(400).json({
         error: 'Name must be unique'
@@ -87,14 +82,16 @@ app.post('/api/persons', (request, response, next) => {
 app.delete('/api/persons/:id', (request, response, next) => {
   const id = request.params.id
   Person.findByIdAndDelete(id).then(result => {
+      if (!result) {
+        return response.status(404).end()
+      }
       response.status(204).end()
   })
   .catch(error => next(error))
 })
 
-app.put('/api/persons/:id', (request, response, next) => {
+app.put('/api/persons/:id', validateInput, (request, response, next) => {
   const { name, number } = request.body
-
   Person.findById(request.params.id)
     .then(person => {
       if (!person) {
@@ -120,9 +117,7 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
-  } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
-  } 
+  }
 
   next(error)
 }
