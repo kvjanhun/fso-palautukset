@@ -10,7 +10,7 @@ Submissions for Full Stack Open course.
 |2025-07-24|Part 2 ✅||8 h|
 |2025-07-26|Part 3a|About HTTP request types|7 h|
 |2025-07-27|Part 3b|Connecting backend...|11 h|
-|2025-07-28||||
+|2025-07-28|Part 3c|3d|8 h|
 
 ## Part 1
 - [Course Information](osa1/courseinfo)
