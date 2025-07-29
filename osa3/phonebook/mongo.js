@@ -32,10 +32,10 @@ const printAllPersons = () => {
 
 const savePerson = () => {
   person.save()
-    .then(result => {
+    .then(() => {
       console.log(`Added ${personName} number ${personNumber} to phonebook.`)
       mongoose.connection.close()
-  })
+    })
 }
 
 if (process.argv.length < 3) {
