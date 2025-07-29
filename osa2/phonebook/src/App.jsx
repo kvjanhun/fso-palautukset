@@ -53,6 +53,15 @@ const App = () => {
           setNotificationMessage(null)
         }, 5000)
       })
+      .catch(error => {
+        setNotificationType('error')
+        // Display error response message from server
+        setNotificationMessage(error.response.data.error)
+        setTimeout(() => {
+          setNotificationType('empty')
+          setNotificationMessage(null)
+        }, 5000)
+      })
   }
 
   const filteredPersons = persons.filter(person =>
@@ -74,10 +83,16 @@ const App = () => {
             setNotificationMessage(null)
           }, 5000)
         })
-        .catch(() => {
-          setPersons(persons.filter(person => person.id !== id))
+        .catch(error => {
           setNotificationType('error')
-          setNotificationMessage(`Information of ${personName} has already been removed from server`)
+          // Display error response message from server if available
+          if (error.response.data.error) {
+            setNotificationMessage(error.response.data.error)
+          } else {
+            // Fallback to assumption that person has been removed
+            setNotificationMessage(`Could not delete '${personName}'. Person may have been already removed from the database.`)
+            setPersons(persons.filter(person => person.id !== id))
+          }
           setTimeout(() => {
             setNotificationType('empty')
             setNotificationMessage(null)
@@ -111,14 +126,20 @@ const App = () => {
           setNotificationMessage(null)
         }, 5000)
       })
-      .catch(() => {
+      .catch(error => {
         setNotificationType('error')
-        setNotificationMessage(`Information of ${personToUpdate.name} has already been removed from server`)
+        // Display error response message from server if available
+        if (error.response.data.error) {
+          setNotificationMessage(error.response.data.error)
+        } else {
+          // Fallback to assumption that person has been removed
+          setNotificationMessage(`Could not update '${personToUpdate.name}'. Person may have been removed from the database.`)
+          setPersons(persons.filter(person => person.id !== id))
+        }
         setTimeout(() => {
           setNotificationType('empty')
           setNotificationMessage(null)
         }, 5000)
-        setPersons(persons.filter(person => person.id !== id))
       })
   }
 
