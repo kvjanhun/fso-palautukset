@@ -15,9 +15,8 @@ Submissions for Full Stack Open course.
 |2025-07-28|Part 3c|3d|11 h|
 |2025-07-29|Part 3 ✅||3 h|
 |||||
-|2025-07-29|Part 4a, Ex 4.1.||4 h|
+|2025-07-29|Part 4a, Ex 4.1.||4,5 h|
 |||||
-|||**Total**|89,5 h|
 
 ## Part 1
 - [Course Information](osa1/courseinfo)
@@ -34,4 +33,4 @@ Submissions for Full Stack Open course.
     - Deployed at https://fso-phonebook-vjwj.onrender.com
 
 ## Part 4
-- What lies ahead
+- [Blog List app](osa4/bloglist)
