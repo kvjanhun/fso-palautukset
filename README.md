@@ -10,7 +10,8 @@ Submissions for Full Stack Open course.
 |2025-07-24|Part 2 ✅||8 h|
 |2025-07-26|Part 3a||7 h|
 |2025-07-27|Part 3b||11 h|
-|2025-07-28|Part 3c|3d|10 h|
+|2025-07-28|Part 3c|3d|11 h|
+|2025-07-29|Part 3d, ex 3.21|3d Lint|2 h|
 
 ## Part 1
 - [Course Information](osa1/courseinfo)
