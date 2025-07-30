@@ -12,11 +12,11 @@ Submissions for Full Stack Open course.
 |||||
 |2025-07-26|Part 3a||7 h|
 |2025-07-27|Part 3b||11 h|
-|2025-07-28|Part 3c|3d|11 h|
+|2025-07-28|Part 3c||11 h|
 |2025-07-29|Part 3 ✅||3 h|
 |||||
 |2025-07-29|Part 4a, Ex 4.1.||4,5 h|
-|2025-07-30|Part 4a, Ex 4.4||5 h|
+|2025-07-30|Part 4a|4b|9 h|
 |||||
 
 ## Part 1
