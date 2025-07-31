@@ -1,24 +1,6 @@
 # fso-palautukset
 Submissions for Full Stack Open course.
 
-| Worklog | Part done  | Bookmark | Time spent |
-|--------:|:-----------|:---------|:-----------|
-|pre-log|Part 1 ✅||20 h|
-|||||
-|2025-07-21|Part 2c||12 h|
-|2025-07-22|Part 2e, Ex 2.17||6 h|
-|2025-07-23|Part 2||7,5 h|
-|2025-07-24|Part 2 ✅||8 h|
-|||||
-|2025-07-26|Part 3a||7 h|
-|2025-07-27|Part 3b||11 h|
-|2025-07-28|Part 3c||11 h|
-|2025-07-29|Part 3 ✅||3 h|
-|||||
-|2025-07-29|Part 4a, Ex 4.1.||4,5 h|
-|2025-07-30|Part 4a|4b|9 h|
-|||||
-
 ## Part 1
 - [Course Information](osa1/courseinfo)
 - [Unicafe](osa1/unicafe)
@@ -35,3 +17,24 @@ Submissions for Full Stack Open course.
 
 ## Part 4
 - [Blog List app](osa4/bloglist)
+
+## Worklog
+|         | Part done  | Bookmark | Time spent |
+|--------:|:-----------|:---------|:-----------|
+|pre-log|Part 1 ✅||14 h|
+|||**Part 1 total**|**14 h**|
+|2025-07-21|Part 2c||12 h|
+|2025-07-22|Part 2e, Ex 2.17||6 h|
+|2025-07-23|Part 2||7,5 h|
+|2025-07-24|Part 2 ✅||8 h|
+|||**Part 2 total**|**33,5 h**|
+|2025-07-26|Part 3a||7 h|
+|2025-07-27|Part 3b||11 h|
+|2025-07-28|Part 3c||11 h|
+|2025-07-29|Part 3 ✅||3 h|
+|||**Part 3 total**|**32 h**|
+|2025-07-29|Part 4a, Ex 4.1.||4,5 h|
+|2025-07-30|Part 4a|4b|9 h|
+|2025-07-31||||
+|||||
+
