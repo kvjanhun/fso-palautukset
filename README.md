@@ -18,7 +18,7 @@ Submissions for Full Stack Open course.
 ## Part 4
 - [Blog List app](osa4/bloglist)
 
-## Worklog
+# Worklog
 |         | Part done  | Bookmark | Time spent |
 |--------:|:-----------|:---------|:-----------|
 |pre-log|Part 1 ✅||14 h|
@@ -35,6 +35,6 @@ Submissions for Full Stack Open course.
 |||**Part 3 total**|**32 h**|
 |2025-07-29|Part 4a, Ex 4.1.||4,5 h|
 |2025-07-30|Part 4a|4b|9 h|
-|2025-07-31||||
+|2025-07-31|Part 4b||7 h|
 |||||
 
