@@ -87,6 +87,26 @@ test('a valid blog can be added', async () => {
   assert.strictEqual(newBlogExists, true)
 })
 
+test('blogs\' likes default to 0', async () => {
+  const newBlog = {
+    title: 'Nobody likes this blog',
+    author: 'Someone Unimportant',
+    url: 'https://worst.blog.ever'
+  }
+  // console.log(newBlog)
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/blogs/')
+  const savedBlog = response.body.find(
+    blog => blog.title === newBlog.title)
+  // console.log(savedBlog)
+  assert.strictEqual(savedBlog.likes, 0)
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
