@@ -107,6 +107,33 @@ test('blogs\' likes default to 0', async () => {
   assert.strictEqual(savedBlog.likes, 0)
 })
 
+test('blog\'s missing title returns 400', async () => {
+  const titlelessBlog = {
+    author: 'Test Author',
+    url: 'Has Url',
+    likes: 5
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(titlelessBlog)
+    .expect(400)
+})
+
+test('blog\'s missing url returns 400', async () => {
+  const urllessBlog = {
+    title: 'Has Title',
+    author: 'Test Author',
+    likes: 5
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(urllessBlog)
+    .expect(400)
+
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
