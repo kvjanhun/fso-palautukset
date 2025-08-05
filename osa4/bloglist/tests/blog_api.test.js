@@ -5,32 +5,13 @@ const assert = require('node:assert')
 const app = require('../app')
 const Blog = require('../models/blog')
 
-const api = supertest(app)
+const helper = require('./test_helper')
 
-const initialBlogs = [
-  {
-    title: 'A blog about Node.js',
-    author: 'A. Nerd',
-    url: 'https://erez.ac',
-    likes: 3
-  },
-  {
-    title: 'Blog about testing',
-    author: 'Test Author',
-    url: 'https://url.test/1',
-    likes: 0
-  },
-  {
-    title: 'Blog about blogging',
-    author: 'Test Author',
-    url: 'https://url.test/2',
-    likes: 1
-  }
-]
+const api = supertest(app)
 
 beforeEach(async () => {
   await Blog.deleteMany({})
-  await Blog.insertMany(initialBlogs)
+  await Blog.insertMany(helper.initialBlogs)
 
   // const blogObjects = initialBlogs
   //   .map(blog => new Blog(blog))
@@ -63,12 +44,7 @@ test('blogs\' unique identifier property is named id', async () => {
 })
 
 test('a valid blog can be added', async () => {
-  const newBlog = {
-    title: 'Importance of regression testing',
-    author: 'A. Smartman',
-    url: 'https://www.com/important_blog.php',
-    likes: 69
-  }
+  const newBlog = helper.validBlog
 
   await api
     .post('/api/blogs')
@@ -83,16 +59,12 @@ test('a valid blog can be added', async () => {
     blog.url === newBlog.url &&
     blog.likes === newBlog.likes
   )
-  assert.strictEqual(response.body.length, initialBlogs.length + 1)
+  assert.strictEqual(response.body.length, helper.initialBlogs.length + 1)
   assert.strictEqual(newBlogExists, true)
 })
 
 test('blogs\' likes default to 0', async () => {
-  const newBlog = {
-    title: 'Nobody likes this blog',
-    author: 'Someone Unimportant',
-    url: 'https://worst.blog.ever'
-  }
+  const newBlog = helper.noLikesBlog
   // console.log(newBlog)
   await api
     .post('/api/blogs')
@@ -108,12 +80,8 @@ test('blogs\' likes default to 0', async () => {
 })
 
 test('blog\'s missing title returns 400', async () => {
-  const titlelessBlog = {
-    author: 'Test Author',
-    url: 'Has Url',
-    likes: 5
-  }
-
+  const titlelessBlog = helper.titlelessBlog
+  // NOTE! Add check that nothing was added to database.
   await api
     .post('/api/blogs')
     .send(titlelessBlog)
@@ -121,18 +89,32 @@ test('blog\'s missing title returns 400', async () => {
 })
 
 test('blog\'s missing url returns 400', async () => {
-  const urllessBlog = {
-    title: 'Has Title',
-    author: 'Test Author',
-    likes: 5
-  }
-
+  const urllessBlog = helper.urllessBlog
+  // NOTE! Add check that nothing was added to database.
   await api
     .post('/api/blogs')
     .send(urllessBlog)
     .expect(400)
-
 })
+
+test('blog deletion succeeds with status code 204 if id valid'), async () => {
+  const blogsBefore = await api.get('api/blogs')
+  const deletedBlog = blogsBefore[0]
+
+  await api.delete(`/api/notes/${deletedBlog.id}`).expect(204)
+
+  const blogsAfter = await api.get('api/blogs')
+
+  assert.strictEqual(blogsAfter.length, blogsBefore.length - 1)
+  const deletedBlogExists = blogsAfter.some(blog =>
+    blog.title === deletedBlogExists.title &&
+    blog.author === deletedBlogExists.author &&
+    blog.url === deletedBlogExists.url &&
+    blog.likes === deletedBlogExists.likes
+  )
+
+  assert.strictEqual(deletedBlogExists, false)
+}
 
 after(async () => {
   await mongoose.connection.close()
