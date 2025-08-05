@@ -60,11 +60,33 @@ const urllessBlog = {
   likes: 5
 }
 
+const validBlogUpdate = {
+  title: 'Updated Blog Title',
+  author: 'Updated Author',
+  url: 'https://updated-url.com',
+  likes: 10
+}
+
+const urllessBlogUpdate = {
+  title: 'Updated Blog Title',
+  author: 'Updated Author',
+  likes: 10
+}
+
+const titlelessBlogUpdate = {
+  url: 'https://updated-url.com',
+  author: 'Updated Author',
+  likes: 10
+}
+
 module.exports = {
   blogsAreEqual,
   initialBlogs,
-  validBlog,
   noLikesBlog,
   titlelessBlog,
-  urllessBlog
+  titlelessBlogUpdate,
+  urllessBlog,
+  urllessBlogUpdate,
+  validBlog,
+  validBlogUpdate,
 }

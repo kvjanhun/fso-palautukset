@@ -138,14 +138,11 @@ describe('Updating a blog', () => {
   test.only('succeeds with status code 200 if id valid', async () => {
     const blogsBefore = await api.get('/api/blogs')
     const blogToUpdate = blogsBefore.body[0]
-
-    const updatedBlog = {
-      ...blogToUpdate,
-      likes: blogToUpdate.likes + 1
-    }
+    const blogUpdate = { likes: blogToUpdate.likes + 1 }
+    const updatedBlog = { ...blogToUpdate, ...blogUpdate }
 
     await api
-      .put(`/api/blogs/${blogToUpdate.id}`)
+      .patch(`/api/blogs/${blogToUpdate.id}`)
       .send(updatedBlog)
       .expect(200)
       .expect('Content-Type', /application\/json/)
@@ -155,6 +152,36 @@ describe('Updating a blog', () => {
       helper.blogsAreEqual(blog, updatedBlog)
     )
     assert.strictEqual(updatedBlogExists, true)
+  })
+  test('fails with status code 400 if id is invalid', async () => {
+    const invalidId = '12345'
+    const updatedBlog = helper.validBlogUpdate
+
+    await api
+      .patch(`/api/blogs/${invalidId}`)
+      .send(updatedBlog)
+      .expect(400)
+
+    const blogsAfter = await api.get('/api/blogs')
+    const blogExists = blogsAfter.body.some(blog =>
+      helper.blogsAreEqual(blog, updatedBlog)
+    )
+    assert.strictEqual(blogExists, false)
+  })
+  test('fails with status code 404 if id does not exist', async () => {
+    const nonExistentId = '999999999999999999999999'
+    const updatedBlog = helper.validBlogUpdate
+
+    await api
+      .patch(`/api/blogs/${nonExistentId}`)
+      .send(updatedBlog)
+      .expect(404)
+
+    const blogsAfter = await api.get('/api/blogs')
+    const blogExists = blogsAfter.body.some(blog =>
+      helper.blogsAreEqual(blog, updatedBlog)
+    )
+    assert.strictEqual(blogExists, false)
   })
 })
 

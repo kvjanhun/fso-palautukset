@@ -34,17 +34,16 @@ blogRouter.delete('/:id', async (request, response, next) => {
   }
 })
 
-blogRouter.put('/:id', async (request, response, next) => {
+blogRouter.patch('/:id', async (request, response, next) => {
   try {
     const idToUpdate = request.params.id
     const body = request.body
 
-    const blogUpdate = {
-      author: body.author,
-      title: body.title,
-      url: body.url,
-      likes: body.likes
-    }
+    const blogUpdate = {}
+    if (body.title !== undefined) blogUpdate.title = body.title
+    if (body.url !== undefined) blogUpdate.url = body.url
+    if (body.author !== undefined) blogUpdate.author = body.author
+    if (body.likes !== undefined) blogUpdate.likes = body.likes
 
     const updatedBlog = await Blog.findByIdAndUpdate(
       idToUpdate,
