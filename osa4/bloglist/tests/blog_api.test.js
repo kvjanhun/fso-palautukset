@@ -97,24 +97,24 @@ test('blog\'s missing url returns 400', async () => {
     .expect(400)
 })
 
-test('blog deletion succeeds with status code 204 if id valid'), async () => {
-  const blogsBefore = await api.get('api/blogs')
-  const deletedBlog = blogsBefore[0]
+test('blog deletion succeeds with status code 204 if id valid', async () => {
+  const blogsBefore = await api.get('/api/blogs')
+  // console.log('blogsBefore:', blogsBefore.body)
+  const deletedBlog = blogsBefore.body[0]
+  // console.log('deletedBlog:', deletedBlog)
 
-  await api.delete(`/api/notes/${deletedBlog.id}`).expect(204)
+  await api.delete(`/api/blogs/${deletedBlog.id}`).expect(204)
 
-  const blogsAfter = await api.get('api/blogs')
+  const blogsAfter = await api.get('/api/blogs')
+  // console.log('blogsAfter:', blogsAfter.body)
+  assert.strictEqual(blogsAfter.body.length, blogsBefore.body.length - 1)
 
-  assert.strictEqual(blogsAfter.length, blogsBefore.length - 1)
-  const deletedBlogExists = blogsAfter.some(blog =>
-    blog.title === deletedBlogExists.title &&
-    blog.author === deletedBlogExists.author &&
-    blog.url === deletedBlogExists.url &&
-    blog.likes === deletedBlogExists.likes
+  const deletedBlogExists = blogsAfter.body.some(blog =>
+    helper.blogsAreEqual(blog, deletedBlog)
   )
-
+  // console.log('deletedBlogExists:', deletedBlogExists)
   assert.strictEqual(deletedBlogExists, false)
-}
+})
 
 after(async () => {
   await mongoose.connection.close()

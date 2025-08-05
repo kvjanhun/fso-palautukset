@@ -1,3 +1,13 @@
+// Returns true if the blogs are equal
+const blogsAreEqual = (blog1, blog2) => {
+  return (
+    blog1.title === blog2.title &&
+    blog1.author === blog2.author &&
+    blog1.url === blog2.url &&
+    blog1.likes === blog2.likes
+  )
+}
+
 const initialBlogs = [
   {
     title: 'A blog about Node.js',
@@ -45,6 +55,7 @@ const urllessBlog = {
 }
 
 module.exports = {
+  blogsAreEqual,
   initialBlogs,
   validBlog,
   noLikesBlog,
