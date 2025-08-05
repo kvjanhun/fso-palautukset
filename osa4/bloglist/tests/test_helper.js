@@ -26,6 +26,12 @@ const initialBlogs = [
     author: 'Test Author',
     url: 'https://url.test/2',
     likes: 1
+  },
+  {
+    title: 'Importance of regression testing',
+    author: 'A. Smartman',
+    url: 'https://www.com/important_blog.php',
+    likes: 69
   }
 ]
 
