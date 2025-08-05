@@ -36,6 +36,6 @@ Submissions for Full Stack Open course.
 |2025-07-29|Part 4a, Ex 4.1.||4,5 h|
 |2025-07-30|Part 4a||9 h|
 |2025-07-31|Part 4b, Ex 4.10||9 h|
-|2025-08-01|Part 4b, Ex 4.12|Refactoring tests|4 h|
-|||||
-
+|2025-08-01|Part 4b, Ex 4.12||4 h|
+|2025-08-04|Part 4b, Ex 4.12||1 h|
+|2025-08-05|Part 4b, Ex 4.12||2 h|
