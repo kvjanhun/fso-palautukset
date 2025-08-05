@@ -124,6 +124,14 @@ describe('Deleting a blog', () => {
     const blogsAfter = await api.get('/api/blogs')
     assert.strictEqual(blogsAfter.body.length, helper.initialBlogs.length)
   })
+
+  test('fails with status code 404 if id does not exist', async () => {
+    const nonExistentId = '999999999999999999999999'
+    await api.delete(`/api/blogs/${nonExistentId}`).expect(404)
+
+    const blogsAfter = await api.get('/api/blogs')
+    assert.strictEqual(blogsAfter.body.length, helper.initialBlogs.length)
+  })
 })
 
 after(async () => {
