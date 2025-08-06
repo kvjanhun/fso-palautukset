@@ -39,3 +39,4 @@ Submissions for Full Stack Open course.
 |2025-08-01|Part 4b, Ex 4.12||4 h|
 |2025-08-04|Part 4b, Ex 4.12||1 h|
 |2025-08-05|Part 4b||7 h|
+|2025-08-06|Part 4c||1,5 h|
