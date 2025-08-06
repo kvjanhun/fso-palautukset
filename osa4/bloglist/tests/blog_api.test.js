@@ -135,7 +135,7 @@ describe('Deleting a blog', () => {
 })
 
 describe('Updating a blog', () => {
-  test.only('succeeds with status code 200 if id valid', async () => {
+  test('succeeds with status code 200 if id valid', async () => {
     const blogsBefore = await api.get('/api/blogs')
     const blogToUpdate = blogsBefore.body[0]
     const blogUpdate = { likes: blogToUpdate.likes + 1 }
